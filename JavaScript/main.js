@@ -1,8 +1,24 @@
-// Whole-script strict mode syntax
-// JavaScript is very flexible
-// flexible === dangerous
-// added ECMAScript 5
+class Counter {
+  constructor(runEveryFiveTimes) {
+    this.counter = 0;
+    this.callback = runEveryFiveTimes;
+  }
 
-// 바닐라 스크립트 할때 사용 'use strict'
-"use strict";
-console.log("Hello World!");
+  increase() {
+    this.counter++;
+    console.log(this.counter);
+    if (this.counter % 5 === 0) {
+      this.callback && this.callback(this.counter);
+    }
+  }
+}
+
+function printSomething(num) {
+  console.log(`Wow! ${num}`);
+}
+function alertNum(num) {
+  alert(`Wow! ${num}`);
+}
+
+const PrintCounter = new Counter(printSomething);
+const alertCounter = new Counter(alertNum);
